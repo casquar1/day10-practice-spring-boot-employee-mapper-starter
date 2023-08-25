@@ -6,6 +6,7 @@ import com.afs.restapi.exception.CompanyNotFoundException;
 import com.afs.restapi.repository.CompanyRepository;
 import com.afs.restapi.repository.EmployeeRepository;
 import com.afs.restapi.service.dto.CompanyRequest;
+import com.afs.restapi.service.dto.CompanyResponse;
 import com.afs.restapi.service.mapper.CompanyMapper;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
@@ -44,9 +45,9 @@ public class CompanyService {
         companyRepository.save(toBeUpdatedCompany);
     }
 
-    public Company create(CompanyRequest companyRequest) {
+    public CompanyResponse create(CompanyRequest companyRequest) {
         Company company = CompanyMapper.toEntity(companyRequest);
-        return companyRepository.save(company);
+        return CompanyMapper.toResponse(companyRepository.save(company));
     }
 
     public List<Employee> findEmployeesByCompanyId(Long id) {
