@@ -101,16 +101,14 @@ class EmployeeApiTest {
 
     @Test
     void should_find_employee_by_id() throws Exception {
-        EmployeeRequest employeeRequest = new EmployeeRequest("Alice", 24, "Female", 5000, null);
-        Employee employee = employeeRepository.save(new Employee(null, employeeRequest.getName(), employeeRequest.getAge(),
-                employeeRequest.getGender(), employeeRequest.getSalary()));
+        Employee employee = employeeRepository.save(getEmployeeBob());
 
         mockMvc.perform(get("/employees/{id}", employee.getId()))
                 .andExpect(MockMvcResultMatchers.status().is(200))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.id").value(notNullValue()))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.name").value(employeeRequest.getName()))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.age").value(employeeRequest.getAge()))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.gender").value(employeeRequest.getGender()))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.name").value(employee.getName()))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.age").value(employee.getAge()))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.gender").value(employee.getGender()))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.salary").doesNotExist());
     }
 
