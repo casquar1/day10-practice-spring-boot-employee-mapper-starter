@@ -42,7 +42,7 @@ public class EmployeeService {
         if (employeeRequest.getAge() != null) {
             toBeUpdatedEmployee.setAge(employeeRequest.getAge());
         }
-        EmployeeMapper.toResponse(employeeRepository.save(toBeUpdatedEmployee));
+        employeeRepository.save(toBeUpdatedEmployee);
     }
 
     public List<EmployeeResponse> findAllByGender(String gender) {
