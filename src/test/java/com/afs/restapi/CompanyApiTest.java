@@ -135,7 +135,7 @@ class CompanyApiTest {
                 .andExpect(MockMvcResultMatchers.jsonPath("$[0].name").value(employee.getName()))
                 .andExpect(MockMvcResultMatchers.jsonPath("$[0].age").value(employee.getAge()))
                 .andExpect(MockMvcResultMatchers.jsonPath("$[0].gender").value(employee.getGender()))
-                .andExpect(MockMvcResultMatchers.jsonPath("$[0].salary").value(employee.getSalary()));
+                .andExpect(MockMvcResultMatchers.jsonPath("$[0].salary").doesNotExist());
     }
 
     private static Employee getEmployee(Company company) {
