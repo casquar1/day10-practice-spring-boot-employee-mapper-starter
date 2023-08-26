@@ -40,8 +40,7 @@ public class EmployeeService {
         if (employeeRequest.getAge() != null) {
             toBeUpdatedEmployee.setAge(employeeRequest.getAge());
         }
-        Employee employee = EmployeeMapper.toEntity(toBeUpdatedEmployee, employeeRequest);
-        EmployeeMapper.toResponse(employeeRepository.save(employee));
+        EmployeeMapper.toResponse(employeeRepository.save(toBeUpdatedEmployee));
     }
 
     public List<Employee> findAllByGender(String gender) {
@@ -49,7 +48,7 @@ public class EmployeeService {
     }
 
     public EmployeeResponse create(EmployeeRequest employeeRequest) {
-        Employee employee = EmployeeMapper.toEntity(null, employeeRequest);
+        Employee employee = EmployeeMapper.toEntity(employeeRequest);
         return EmployeeMapper.toResponse(employeeRepository.save(employee));
     }
 

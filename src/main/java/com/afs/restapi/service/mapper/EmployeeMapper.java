@@ -9,10 +9,8 @@ public class EmployeeMapper {
 
     private EmployeeMapper(){}
 
-    public static Employee toEntity(Employee employee, EmployeeRequest employeeRequest) {
-        if (employee == null) {
-            employee = new Employee();
-        }
+    public static Employee toEntity(EmployeeRequest employeeRequest) {
+        Employee employee = new Employee();
         BeanUtils.copyProperties(employeeRequest, employee);
         return employee;
     }
