@@ -109,7 +109,7 @@ class CompanyApiTest {
     void should_find_companies_by_page() throws Exception {
         Company oocl = companyRepository.save(getCompanyOOCL());
         Company thoughtworks = companyRepository.save(getCompanyThoughtWorks());
-        Company google = companyRepository.save(getCompanyGoogle());
+        companyRepository.save(getCompanyGoogle());
 
         mockMvc.perform(get("/companies")
                         .param("pageNumber", "1")
@@ -119,7 +119,8 @@ class CompanyApiTest {
                 .andExpect(MockMvcResultMatchers.jsonPath("$[0].id").value(oocl.getId()))
                 .andExpect(MockMvcResultMatchers.jsonPath("$[0].name").value(oocl.getName()))
                 .andExpect(MockMvcResultMatchers.jsonPath("$[1].id").value(thoughtworks.getId()))
-                .andExpect(MockMvcResultMatchers.jsonPath("$[1].name").value(thoughtworks.getName()));
+                .andExpect(MockMvcResultMatchers.jsonPath("$[1].name").value(thoughtworks.getName()))
+                .andExpect(MockMvcResultMatchers.jsonPath("$[1].employeesCount").exists());
     }
 
     @Test
