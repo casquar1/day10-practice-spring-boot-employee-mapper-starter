@@ -29,9 +29,10 @@ public class CompanyService {
         return companyRepository.findAll();
     }
 
-    public Company findById(Long id) {
-        return companyRepository.findById(id)
+    public CompanyResponse findById(Long id) {
+        Company company = companyRepository.findById(id)
                 .orElseThrow(CompanyNotFoundException::new);
+        return CompanyMapper.toResponse(company);
     }
 
     public List<Company> findByPage(Integer pageNumber, Integer pageSize) {
