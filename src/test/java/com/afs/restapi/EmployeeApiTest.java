@@ -48,7 +48,7 @@ class EmployeeApiTest {
     @Test
     void should_find_employee_by_gender() throws Exception {
         Employee bob = employeeRepository.save(getEmployeeBob());
-        Employee susan = employeeRepository.save(getEmployeeSusan());
+        employeeRepository.save(getEmployeeSusan());
 
         mockMvc.perform(get("/employees?gender={0}", "Male"))
                 .andExpect(MockMvcResultMatchers.status().is(200))
@@ -57,7 +57,7 @@ class EmployeeApiTest {
                 .andExpect(MockMvcResultMatchers.jsonPath("$[0].name").value(bob.getName()))
                 .andExpect(MockMvcResultMatchers.jsonPath("$[0].age").value(bob.getAge()))
                 .andExpect(MockMvcResultMatchers.jsonPath("$[0].gender").value(bob.getGender()))
-                .andExpect(MockMvcResultMatchers.jsonPath("$[0].salary").value(bob.getSalary()));
+                .andExpect(MockMvcResultMatchers.jsonPath("$[0].salary").doesNotExist());
     }
 
     @Test
