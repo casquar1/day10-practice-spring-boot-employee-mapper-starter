@@ -3,6 +3,7 @@ package com.afs.restapi.controller;
 import com.afs.restapi.service.EmployeeService;
 import com.afs.restapi.service.dto.EmployeeRequest;
 import com.afs.restapi.service.dto.EmployeeResponse;
+import com.afs.restapi.service.dto.EmployeeUpdateRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,8 +31,8 @@ public class EmployeeController {
 
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void updateEmployee(@PathVariable Long id, @RequestBody EmployeeRequest employeeRequest) {
-        employeeService.update(id, employeeRequest);
+    public void updateEmployee(@PathVariable Long id, @RequestBody EmployeeUpdateRequest employeeUpdateRequest) {
+        employeeService.update(id, employeeUpdateRequest);
     }
 
     @DeleteMapping("/{id}")

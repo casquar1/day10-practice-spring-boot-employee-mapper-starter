@@ -3,6 +3,7 @@ package com.afs.restapi;
 import com.afs.restapi.entity.Employee;
 import com.afs.restapi.repository.EmployeeRepository;
 import com.afs.restapi.service.dto.EmployeeRequest;
+import com.afs.restapi.service.dto.EmployeeUpdateRequest;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -80,7 +81,7 @@ class EmployeeApiTest {
     @Test
     void should_update_employee_age_and_salary() throws Exception {
         Employee previousEmployee = employeeRepository.save(new Employee(null,"Json", 22, "Male", 1000));
-        EmployeeRequest employeeUpdateRequest = new EmployeeRequest("Json", 24, "Male", 2000, null);
+        EmployeeUpdateRequest employeeUpdateRequest = new EmployeeUpdateRequest(24,  2000);
 
         ObjectMapper objectMapper = new ObjectMapper();
         String updatedEmployeeJson = objectMapper.writeValueAsString(employeeUpdateRequest);
